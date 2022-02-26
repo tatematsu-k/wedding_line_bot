@@ -1,0 +1,1 @@
+require "db/schema/invited_users.rb"
