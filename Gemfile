@@ -8,6 +8,8 @@ gem 'mysql2'
 gem 'puma'
 gem 'bootsnap', require: false
 
+gem 'line-bot-api'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
