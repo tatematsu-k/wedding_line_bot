@@ -9,14 +9,20 @@ gem 'puma'
 gem 'bootsnap', require: false
 
 gem 'line-bot-api'
+gem 'ridgepole'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
   gem 'listen'
   gem 'spring'
+  gem 'annotate'
 end
 
 group :test do
