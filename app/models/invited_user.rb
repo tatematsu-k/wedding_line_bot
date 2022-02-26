@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: invited_users
@@ -12,5 +14,4 @@
 #  index_invited_users_on_name  (name) UNIQUE
 #
 class InvitedUser < ApplicationRecord
-  
 end
