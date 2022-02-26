@@ -19,7 +19,6 @@ jobs:
       db:
         image: mysql:5.7
     env:
-      ImageOS: ubuntu20
       RAILS_ENV: test
     steps:
       - name: Checkout with push
