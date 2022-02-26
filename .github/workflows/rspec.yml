@@ -1,0 +1,41 @@
+name: rspec
+on: [push]
+jobs:
+  run_spec:
+    name: Run spec
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+      db:
+        image: mysql:5.7
+    env:
+      RAILS_ENV: test
+    steps:
+      - name: Checkout with push
+        if: ${{ github.event_name == 'push' }}
+        uses: actions/checkout@v2
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.1
+          bundler-cache: true
+      - name: copy Rails database settings
+        run: cp config/{database.ci,database}.yml
+      - name: Setup database
+        env:
+          DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
+        run: bundle exec rake db:create db:migrate
+      - name: Run specs
+        env:
+          DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
+        run: bundle exec rspec
