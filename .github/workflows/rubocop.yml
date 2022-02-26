@@ -1,0 +1,19 @@
+name: rubocop
+on: [push]
+jobs:
+  run_rubocop:
+    name: Run rubocop
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    steps:
+      - name: Checkout with push
+        if: ${{ github.event_name == 'push' }}
+        uses: actions/checkout@v2
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.1
+          bundler-cache: true
+      - name: Run rubocop
+        run: bundle exec rubocop
