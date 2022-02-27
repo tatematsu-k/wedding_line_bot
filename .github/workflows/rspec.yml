@@ -21,8 +21,7 @@ jobs:
     env:
       RAILS_ENV: test
     steps:
-      - name: Checkout with push
-        if: ${{ github.event_name == 'push' }}
+      - name: Checkout
         uses: actions/checkout@v2
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
