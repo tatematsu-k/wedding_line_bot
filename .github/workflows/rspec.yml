@@ -38,4 +38,4 @@ jobs:
       - name: Run specs
         env:
           DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
-        run: bundle exec rspec
+        run: bundle exec rspec --order rand
