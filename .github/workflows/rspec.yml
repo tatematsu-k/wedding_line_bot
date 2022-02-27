@@ -10,7 +10,7 @@ jobs:
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         ports:
-          - 3306
+          - 3306:3306
         options: >-
           --health-cmd="mysqladmin ping"
           --health-interval=10s
@@ -31,10 +31,6 @@ jobs:
       - name: copy Rails database settings
         run: cp config/{database.ci,database}.yml
       - name: Setup database
-        env:
-          DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
         run: sh local_db_migrate.sh
       - name: Run specs
-        env:
-          DATABASE_PORT: ${{ job.services.mysql.ports[3306] }}
         run: bundle exec rspec --order rand
