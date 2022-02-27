@@ -14,4 +14,5 @@
 #  index_invited_users_on_name  (name) UNIQUE
 #
 class InvitedUser < ApplicationRecord
+  has_one :user_activation, dependent: :destroy
 end
