@@ -2,10 +2,11 @@
 
 module Line
   class EventHandleService::MessageService
-    attr_reader :event
+    attr_reader :event, :line_user
 
-    def initialize(event:)
+    def initialize(event:, line_user:)
       @event = event
+      @line_user = line_user
     end
 
     def call
@@ -16,7 +17,7 @@ module Line
       def event_service_class
         case event.type
         when Line::Bot::Event::MessageType::Text
-          TextMessageService.new(event:)
+          TextMessageService.new(event:, line_user:)
         end
       end
   end
