@@ -31,6 +31,8 @@ jobs:
       - name: copy Rails database settings
         run: cp config/{database.ci,database}.yml
       - name: Setup database
-        run: sh local_db_migrate.sh
+        run: |
+          bundle exec rails db:create
+          bundle exec ridgepole -E test -c config/database.yml --apply
       - name: Run specs
         run: bundle exec rspec --order rand
