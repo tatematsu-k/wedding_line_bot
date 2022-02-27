@@ -47,6 +47,43 @@ describe Webhook::LinesController do
       end
     end
 
+    context "with follow event" do
+      let!(:event) do
+        {
+          type: "follow",
+          timestamp: 1645876173427,
+          source: {
+            type: "user",
+            userId: "sampleUserId"
+          },
+          replyToken: "sampleReplyToken",
+          mode: "active"
+        }
+      end
+
+      it { is_expected.to eq 200 }
+
+      it { expect { subject }.to change(LineUser, :count).by(1) }
+    end
+
+    context "with unfollow event" do
+      let!(:event) do
+        {
+          type: "unfollow",
+          timestamp: 1645876173427,
+          source: {
+            type: "user",
+            userId: line_user.line_uid
+          },
+          mode: "active"
+        }
+      end
+      let!(:line_user) { create(:line_user, line_uid: "sampleUserId") }
+
+      it { is_expected.to eq 200 }
+      it { expect { subject }.to change { line_user.reload.follow_status }.from("follow").to("unfollow") }
+    end
+
     context "with invalid signature" do
       let!(:event) { nil }
       let!(:validate_signature_response) { false }
