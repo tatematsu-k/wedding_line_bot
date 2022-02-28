@@ -1,0 +1,34 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+    command: bash -c "rm -f /wedding_line_bot/tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
+    restart: always
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    environment:
+      - RAILS_ENV=development
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=
+    volumes:
+      - .:/wedding_line_bot:cached
+  db:
+    image: mysql:5.7
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    ports:
+      - "53306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql:cached
+    environment:
+      - MYSQL_DATABASE=wedding_line_bot_development
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+volumes:
+  mysql_data:
+    driver: local

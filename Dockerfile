@@ -13,9 +13,7 @@ RUN mkdir /wedding_line_bot
 WORKDIR /wedding_line_bot
 COPY Gemfile /wedding_line_bot/Gemfile
 COPY Gemfile.lock /wedding_line_bot/Gemfile.lock
-RUN bundle config set --local deployment 'true' && \
-    bundle config set --local without 'development test' && \
-    bundle install
+RUN bundle install
 COPY . /wedding_line_bot
 
 EXPOSE 80
