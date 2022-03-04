@@ -1,28 +1,33 @@
 # The manifest for the "web" service.
-# Read the full specification for the "Request-Driven Web Service" type at:
-# https://aws.github.io/copilot-cli/docs/manifest/rd-web-service/
+# Read the full specification for the "Load Balanced Web Service" type at:
+#  https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/
 
+# Your service name will be used in naming your resources like log groups, ECS services, etc.
 name: web
-type: Request-Driven Web Service
-
-image:
-  build: Dockerfile
-  port: 80
-
-http:
-  healthcheck: '/healthcheck'
+type: Load Balanced Web Service
 
 network:
   vpc:
     placement: 'private'
 
-cpu: 1024
-memory: 2048
-exec: true
+http:
+  path: '/'
+  healthcheck: '/healthcheck'
+
+# Configuration for your containers and service.
+image:
+  build: Dockerfile
+  port: 80
+
+cpu: 256       # Number of CPU units for the task.
+memory: 512    # Amount of memory in MiB used by the task.
+count: 1       # Number of tasks that should be running in your service.
+exec: true     # Enable running commands in your container.
 
 variables:
   LOG_LEVEL: info
   RAILS_LOG_TO_STDOUT: true
+  RAILS_ENV: production
 
 secrets:
   DB_HOST: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_HOST
@@ -33,6 +38,8 @@ secrets:
   LINE_CHANNEL_SECRET: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/LINE_CHANNEL_SECRET
   LINE_CHANNEL_TOKEN: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/LINE_CHANNEL_TOKEN
 
+# You can override any of the values defined above by environment.
 environments:
   production:
-    RAILS_ENV: production
+    count:
+      spot: 2
