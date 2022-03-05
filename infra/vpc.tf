@@ -12,8 +12,8 @@ module "vpc" {
   public_subnets  = ["11.0.101.0/24", "11.0.102.0/24", "11.0.103.0/24"]
 
   # 高いのでnat instanceで誤魔化す
-  enable_nat_gateway = false
-  # single_nat_gateway = true
+  enable_nat_gateway = true
+  single_nat_gateway = true
 
   enable_dns_hostnames = true
 
@@ -22,12 +22,12 @@ module "vpc" {
     service   = "wedding-line-bot"
   }
 }
-module "nat" {
-  source = "int128/nat-instance/aws"
+# module "nat" {
+#   source = "int128/nat-instance/aws"
 
-  name                        = "nat-instance"
-  vpc_id                      = module.vpc.vpc_id
-  public_subnet               = module.vpc.public_subnets[0]
-  private_subnets_cidr_blocks = module.vpc.private_subnets_cidr_blocks
-  private_route_table_ids     = module.vpc.private_route_table_ids
-}
+#   name                        = "nat-instance"
+#   vpc_id                      = module.vpc.vpc_id
+#   public_subnet               = module.vpc.public_subnets[0]
+#   private_subnets_cidr_blocks = module.vpc.private_subnets_cidr_blocks
+#   private_route_table_ids     = module.vpc.private_route_table_ids
+# }

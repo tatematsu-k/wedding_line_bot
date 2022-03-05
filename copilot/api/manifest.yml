@@ -1,9 +1,8 @@
-# The manifest for the "web" service.
+# The manifest for the "api" service.
 # Read the full specification for the "Load Balanced Web Service" type at:
 #  https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/
 
-# Your service name will be used in naming your resources like log groups, ECS services, etc.
-name: web
+name: api
 type: Load Balanced Web Service
 
 network:
@@ -14,15 +13,14 @@ http:
   path: '/'
   healthcheck: '/healthcheck'
 
-# Configuration for your containers and service.
 image:
   build: Dockerfile
   port: 80
 
-cpu: 256       # Number of CPU units for the task.
-memory: 512    # Amount of memory in MiB used by the task.
-count: 1       # Number of tasks that should be running in your service.
-exec: true     # Enable running commands in your container.
+cpu: 256
+memory: 512
+count: 1
+exec: true
 
 variables:
   LOG_LEVEL: info
@@ -30,6 +28,7 @@ variables:
   RAILS_ENV: production
 
 secrets:
+  RAILS_MASTER_KEY: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/RAILS_MASTER_KEY
   DB_HOST: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_HOST
   DB_DATABASE_NAME: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_DATABASE_NAME
   DB_USERNAME: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_USERNAME
@@ -38,8 +37,7 @@ secrets:
   LINE_CHANNEL_SECRET: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/LINE_CHANNEL_SECRET
   LINE_CHANNEL_TOKEN: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/LINE_CHANNEL_TOKEN
 
-# You can override any of the values defined above by environment.
 environments:
-  production:
+  prd:
     count:
-      spot: 2
+      spot: 1
