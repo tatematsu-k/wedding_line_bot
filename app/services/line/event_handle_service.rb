@@ -22,6 +22,8 @@ module Line
           FollowService.new(event:, line_user:)
         when Line::Bot::Event::Unfollow
           UnfollowService.new(event:, line_user:)
+        when Line::Bot::Event::Postback
+          PostbackService.new(event:, line_user:)
         end
       end
   end
