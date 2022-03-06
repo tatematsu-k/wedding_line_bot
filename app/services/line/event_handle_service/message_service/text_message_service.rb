@@ -10,8 +10,13 @@ module Line
     end
 
     def call
-      message = { type: "text", text: received_message }
-      client.reply_message(event["replyToken"], message)
+      if line_user.invited_user.nil?
+        CheckUserNameService.new(event:, line_user:).call
+      else
+        # 未対応のものは一旦受け取った文言を返す
+        message = { type: "text", text: received_message }
+        client.reply_message(event["replyToken"], message)
+      end
     end
 
     private

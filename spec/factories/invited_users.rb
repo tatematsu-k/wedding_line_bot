@@ -14,6 +14,9 @@
 #
 #  index_invited_users_on_name  (name) UNIQUE
 #
-class InvitedUser < ApplicationRecord
-  has_one :user_activation, dependent: :destroy
+FactoryBot.define do
+  factory :invited_user do
+    sequence(:name) { |i| "name#{i}" }
+    sequence(:init_message) { |i| "init_message#{i}" }
+  end
 end
