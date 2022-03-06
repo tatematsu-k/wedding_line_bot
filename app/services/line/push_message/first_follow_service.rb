@@ -11,7 +11,7 @@ class Line::PushMessage::FirstFollowService
   def call
     line_client.reply_message(event["replyToken"], first_text_message)
     sleep(5)
-    pp line_client.push_message(line_user.line_uid, second_message)
+    line_client.push_message(line_user.line_uid, second_message)
   end
 
   private
