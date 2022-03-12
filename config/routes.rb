@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     resource :line, only: [:create]
   end
 
-  get 'healthcheck', to: proc { [200, {}, ['']] }
+  get "healthcheck", to: proc { [200, {}, [""]] }
 end
