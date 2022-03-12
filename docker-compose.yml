@@ -7,7 +7,7 @@ services:
     command: bash -c "rm -f /wedding_line_bot/tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
     restart: always
     ports:
-      - "3000:3000"
+      - "80:80"
     links:
       - db
     environment:
