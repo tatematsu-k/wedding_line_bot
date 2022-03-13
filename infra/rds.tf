@@ -14,8 +14,13 @@ module "rds_security_group" {
   description = "Security group for RDS of wedding-line-bot."
   vpc_id      = module.vpc.vpc_id
 
-  ingress_cidr_blocks = module.vpc.private_subnets_cidr_blocks
-  ingress_rules       = ["mysql-tcp"]
+  computed_ingress_with_source_security_group_id = [
+    {
+      rule                     = "mysql-tcp"
+      source_security_group_id = module.ecs_security_group.security_group_id
+    }
+  ]
+  number_of_computed_ingress_with_source_security_group_id = 1
 
   egress_cidr_blocks = module.vpc.private_subnets_cidr_blocks
   egress_rules       = ["all-all"]
@@ -41,6 +46,8 @@ resource "aws_rds_cluster" "default" {
   backup_retention_period = 5
   preferred_backup_window = "07:00-09:00"
   skip_final_snapshot     = true
+
+  vpc_security_group_ids = [module.rds_security_group.security_group_id]
 
   db_cluster_parameter_group_name = aws_rds_cluster_parameter_group.default.id
 }

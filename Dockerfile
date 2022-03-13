@@ -19,9 +19,9 @@ RUN bundle config set --local deployment 'true' && \
 COPY . /wedding_line_bot
 
 # copilot の pipeline でサービスデプロイ前にフックする方法がないので entrypoint.sh で実行
-# COPY entrypoint.sh /usr/bin/
-# RUN chmod +x /usr/bin/entrypoint.sh
-# ENTRYPOINT ["entrypoint.sh"]
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 80
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "80"]

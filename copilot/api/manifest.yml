@@ -8,6 +8,7 @@ type: Load Balanced Web Service
 network:
   vpc:
     placement: 'private'
+    security_groups: ["sg-0946728c05af50304"]
 
 http:
   path: '/'
