@@ -1,0 +1,44 @@
+# The manifest for the "api" service.
+# Read the full specification for the "Load Balanced Web Service" type at:
+#  https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/
+
+name: api
+type: Load Balanced Web Service
+
+network:
+  vpc:
+    placement: 'private'
+    security_groups: ["sg-0946728c05af50304"]
+
+http:
+  path: '/'
+  healthcheck: '/healthcheck'
+
+image:
+  build: Dockerfile
+  port: 80
+
+cpu: 256
+memory: 512
+count: 1
+exec: true
+
+variables:
+  LOG_LEVEL: info
+  RAILS_LOG_TO_STDOUT: true
+  RAILS_ENV: production
+
+secrets:
+  RAILS_MASTER_KEY: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/RAILS_MASTER_KEY
+  DB_HOST: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_HOST
+  DB_DATABASE_NAME: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_DATABASE_NAME
+  DB_USERNAME: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_USERNAME
+  DB_PASSWORD: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_PASSWORD
+  DB_PORT: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/DB_PORT
+  LINE_CHANNEL_SECRET: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/LINE_CHANNEL_SECRET
+  LINE_CHANNEL_TOKEN: /copilot/${COPILOT_APPLICATION_NAME}/${COPILOT_ENVIRONMENT_NAME}/secrets/LINE_CHANNEL_TOKEN
+
+environments:
+  prd:
+    count:
+      spot: 1
