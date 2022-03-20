@@ -1,13 +1,9 @@
-setup:
-  config:
-    RAILS_ENV: production
 build:
   docker:
     web: Dockerfile
-  config:
-    RAILS_ENV: production
 release:
   command:
-    - bundle exec rails db:create
     - bundle exec ridgepole -E production -c config/database.yml --apply
-  image: worker
+  image: web
+run:
+  web: bundle exec rails s -b 0.0.0.0 -p 80
