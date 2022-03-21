@@ -19,11 +19,10 @@ module Line
       case cmd
       when CMD_YES
         line_user.create_user_activation!(invited_user:)
-        # リッチメニューの登録
 
         PushMessage::ApproveUserNameConfirmationService.new(event:, line_user:, invited_user:).call
       when CMD_NO
-        PushMessage::RejectUserNameConfirmationService.new(event:, line_user:, invited_user:).call
+        PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message: "お手数ですが再度お名前を送信してください。").call
       end
     end
 

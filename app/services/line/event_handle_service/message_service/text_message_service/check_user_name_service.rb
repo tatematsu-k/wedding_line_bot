@@ -14,7 +14,12 @@ module Line
 
       PushMessage::ConfirmUserNameService.new(event:, line_user:, invited_user:).call
     rescue ActiveRecord::RecordNotFound
-      PushMessage::UserNameNotFoundService.new(event:, line_user:).call
+      message = <<~MESSAGE.chomp
+        申し訳ございません。
+        お名前の確認に失敗しました。
+        お手数ですが再度お名前の入力をお願いします。
+      MESSAGE
+      Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
     end
 
     private

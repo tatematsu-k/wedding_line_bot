@@ -4,11 +4,12 @@
 #
 # Table name: line_users
 #
-#  id            :bigint           not null, primary key
-#  follow_status :string(255)      not null
-#  line_uid      :string(255)      not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id              :bigint           not null, primary key
+#  follow_status   :string(255)      not null
+#  line_uid        :string(255)      not null
+#  question_status :string(255)      not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
@@ -22,4 +23,10 @@ class LineUser < ApplicationRecord
     follow: "follow",
     unfollow: "unfollow"
   }, _default: "follow"
+
+  enum question_status: {
+    not_started: "not_started",
+    wait_answer1: "wait_answer1",
+    wait_answer2: "wait_answer2"
+  }, _default: "not_started", _prefix: true
 end
