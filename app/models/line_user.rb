@@ -25,6 +25,7 @@ class LineUser < ApplicationRecord
   }, _default: "follow"
 
   enum question_status: {
-    not_started: "not_started"
-  }, _default: "not_started"
+    not_started: "not_started",
+    wait_answer1: "wait_answer1"
+  }, _default: "not_started", _prefix: true
 end
