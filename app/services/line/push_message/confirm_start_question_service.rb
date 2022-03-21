@@ -19,7 +19,7 @@ class Line::PushMessage::ConfirmStartQuestionService
         altText: text,
         template: {
           type: "confirm",
-          text: text,
+          text:,
           actions: [
             {
               type: "postback",
