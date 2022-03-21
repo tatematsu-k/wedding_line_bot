@@ -17,7 +17,7 @@ class Line::PushMessage::ConfirmUserNameService
     def confirm_message(invited_user)
       {
         type: "template",
-        altText: "this is a confirm template",
+        altText: "「#{invited_user.name}」さんでお間違いないですか？",
         template: {
           type: "confirm",
           text: "「#{invited_user.name}」さんでお間違いないですか？",
