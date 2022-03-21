@@ -9,17 +9,19 @@ class Line::PushMessage::SendQuestion1Service
   end
 
   def call
-    line_client.reply_message(event["replyToken"], confirm_message(invited_user))
+    line_client.reply_message(event["replyToken"], [question_message, hint_message])
   end
 
   private
     def question_message
       {
         type: "template",
-        altText: "This is a buttons template",
+        altText: "1つ目の謎",
         template: {
           type: "buttons",
-          thumbnailImageUrl: "https://example.com/bot/images/image.jpg",
+          thumbnailImageUrl: "https://arisago.com/official/wp-content/uploads/2017/08/o153.png",
+          imageAspectRatio: "square",
+          imageSize: "contain",
           title: "1つ目の謎",
           text: "新婚旅行で行ったのはどこでしょう？",
           actions: [
@@ -57,6 +59,16 @@ class Line::PushMessage::SendQuestion1Service
             },
           ]
         }
+      }
+    end
+
+    def hint_message
+      {
+        type: "text",
+        text: <<~MESSAGE.chomp
+          ヒント！
+          大きな木の下に新婚旅行の写真が飾ってあるよ
+        MESSAGE
       }
     end
 

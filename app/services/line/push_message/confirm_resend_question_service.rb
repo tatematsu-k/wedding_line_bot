@@ -9,16 +9,16 @@ class Line::PushMessage::ConfirmResendQuestionService
   end
 
   def call
-    line_client.reply_message(event["replyToken"], confirm_message(invited_user))
+    line_client.reply_message(event["replyToken"], confirm_message)
   end
 
   private
-    def confirm_message(invited_user)
+    def confirm_message
       {
         type: "template",
         altText: text,
         template: {
-          type: "confirm",
+          type: "buttons",
           text: text,
           actions: [
             {

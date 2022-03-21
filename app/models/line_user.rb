@@ -26,6 +26,7 @@ class LineUser < ApplicationRecord
 
   enum question_status: {
     not_started: "not_started",
-    wait_answer1: "wait_answer1"
+    wait_answer1: "wait_answer1",
+    wait_answer2: "wait_answer2"
   }, _default: "not_started", _prefix: true
 end

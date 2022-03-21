@@ -12,6 +12,7 @@ module Line
 
     def call
       if line_user.question_status_not_started?
+        line_user.question_status_wait_answer1!
         PushMessage::SendQuestion1Service.new(event:, line_user:).call
       else
         PushMessage::ConfirmResendQuestionService.new(event:, line_user:).call

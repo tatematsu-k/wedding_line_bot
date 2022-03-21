@@ -17,7 +17,7 @@ module Line
     end
 
     def call
-      if line_user.question_status_wait_question1?
+      if line_user.question_status_wait_answer1?
         case cmd
         when CMD_HOKKAIDO
           message = <<~MESSAGE.chomp
@@ -40,7 +40,7 @@ module Line
           MESSAGE
           Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
         when CMD_OKINAWA
-          line_user.question_status_wait_question2!
+          line_user.question_status_wait_answer2!
           message = <<~MESSAGE.chomp
             正解！
           MESSAGE
