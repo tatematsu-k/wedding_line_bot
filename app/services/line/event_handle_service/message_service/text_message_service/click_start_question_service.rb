@@ -2,7 +2,7 @@
 
 module Line
   class EventHandleService::MessageService::TextMessageService::ClickStartQuestionService
-    CMD = "謎解き開始！".freeze
+    CMD = "謎解き開始！"
     attr_reader :event, :line_user
 
     def initialize(event:, line_user:)

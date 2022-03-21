@@ -19,7 +19,7 @@ class Line::PushMessage::ConfirmResendQuestionService
         altText: text,
         template: {
           type: "buttons",
-          text: text,
+          text:,
           actions: [
             {
               type: "postback",
