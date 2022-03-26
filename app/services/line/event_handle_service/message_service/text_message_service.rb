@@ -33,7 +33,8 @@ module Line
       def find_target_service_class(message)
         [
           ClickStartQuestionService,
-          RequestSeatListService
+          RequestSeatListService,
+          RequestMenuService,
         ].detect do |service_class|
           service_class::MESSAGE == message
         end

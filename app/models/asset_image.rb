@@ -11,14 +11,24 @@
 #  updated_at :datetime         not null
 #
 class AssetImage < ApplicationRecord
-  SEAT_IMAGE_KEY = "seat_image".freeze
-  FIRST_QUESTION = "first_question".freeze
+  SEAT_IMAGE_KEY = "seat_image"
+  MENU_KEY = "menu"
+  MENU_JR_KEY = "menu_jr"
+  FIRST_QUESTION_KEY = "first_question"
 
   def self.seat_list_image
     @@seat_list_image ||= AssetImage.find_by!(key: SEAT_IMAGE_KEY)
   end
 
+  def self.menu_image
+    @@menu_image ||= AssetImage.find_by!(key: MENU_KEY)
+  end
+
+  def self.menu_jr_image
+    @@menu_jr_image ||= AssetImage.find_by!(key: MENU_JR_KEY)
+  end
+
   def self.first_question_image
-    @@first_question_image ||= AssetImage.find_by!(key: FIRST_QUESTION)
+    @@first_question_image ||= AssetImage.find_by!(key: FIRST_QUESTION_KEY)
   end
 end

@@ -2,7 +2,7 @@
 
 module Line
   class EventHandleService::MessageService::TextMessageService::RequestSeatListService
-    MESSAGE="披露宴の座席は？".freeze
+    MESSAGE = "披露宴の座席は？"
 
     attr_reader :event, :line_user
 
