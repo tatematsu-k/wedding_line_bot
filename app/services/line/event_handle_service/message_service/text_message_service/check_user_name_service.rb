@@ -39,7 +39,7 @@ module Line
       end
 
       def trimed_inputed_name
-        @trimed_inputed_name ||= event.message["text"].delete(" ")
+        @trimed_inputed_name ||= event.message["text"].gsub(/[[:space:]]/, "")
       end
   end
 end
