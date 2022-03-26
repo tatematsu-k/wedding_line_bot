@@ -19,7 +19,7 @@ class Line::PushMessage::SendQuestion1Service
         altText: "1つ目の謎",
         template: {
           type: "buttons",
-          thumbnailImageUrl: "https://arisago.com/official/wp-content/uploads/2017/08/o153.png",
+          thumbnailImageUrl: AssetImage.first_question_image.url,
           imageAspectRatio: "square",
           imageSize: "contain",
           title: "1つ目の謎",

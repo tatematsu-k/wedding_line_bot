@@ -2,7 +2,7 @@
 
 module Line
   class EventHandleService::MessageService::TextMessageService::ClickStartQuestionService
-    CMD = "開演までの時間をワクワクに"
+    MESSAGE = "開宴までの時間をワクワクに"
     attr_reader :event, :line_user
 
     def initialize(event:, line_user:)
