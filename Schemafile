@@ -1,3 +1,4 @@
+require "db/schema/asset_images.rb"
 require "db/schema/invited_users.rb"
 require "db/schema/line_users.rb"
 require "db/schema/user_activations.rb"

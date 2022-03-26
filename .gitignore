@@ -1,3 +1,5 @@
+db/seeds/master.rb
+
 ###
 # cf: https://github.com/github/gitignore/blob/main/Rails.gitignore
 ###
@@ -110,4 +112,3 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-

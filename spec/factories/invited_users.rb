@@ -4,11 +4,12 @@
 #
 # Table name: invited_users
 #
-#  id           :bigint           not null, primary key
-#  init_message :text(65535)      not null
-#  name         :string(255)      not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id               :bigint           not null, primary key
+#  init_message     :text(65535)      not null
+#  name             :string(255)      not null
+#  send_junior_menu :boolean          default(FALSE), not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 # Indexes
 #
@@ -18,5 +19,6 @@ FactoryBot.define do
   factory :invited_user do
     sequence(:name) { |i| "name#{i}" }
     sequence(:init_message) { |i| "init_message#{i}" }
+    send_junior_menu { false }
   end
 end
