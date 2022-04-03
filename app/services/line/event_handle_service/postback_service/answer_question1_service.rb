@@ -41,10 +41,7 @@ module Line
           Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
         when CMD_OKINAWA
           line_user.question_status_wait_answer2!
-          message = <<~MESSAGE.chomp
-            正解！
-          MESSAGE
-          Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
+          Line::PushMessage::SendQuestion2Service.new(event:, line_user:).call
         end
       end
     end
