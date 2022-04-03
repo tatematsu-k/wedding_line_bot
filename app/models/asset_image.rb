@@ -15,6 +15,7 @@ class AssetImage < ApplicationRecord
   MENU_KEY = "menu"
   MENU_JR_KEY = "menu_jr"
   FIRST_QUESTION_KEY = "first_question"
+  SECOND_QUESTION_KEY = "second_question"
 
   def self.seat_list_image
     @@seat_list_image ||= AssetImage.find_by!(key: SEAT_IMAGE_KEY)
@@ -30,5 +31,9 @@ class AssetImage < ApplicationRecord
 
   def self.first_question_image
     @@first_question_image ||= AssetImage.find_by!(key: FIRST_QUESTION_KEY)
+  end
+
+  def self.second_question_image
+    @@second_question_image ||= AssetImage.find_by!(key: SECOND_QUESTION_KEY)
   end
 end
