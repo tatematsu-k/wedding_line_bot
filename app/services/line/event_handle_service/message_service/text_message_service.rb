@@ -35,6 +35,7 @@ module Line
           ClickStartQuestionService,
           RequestSeatListService,
           RequestMenuService,
+          RequestIntroductionService,
         ].detect do |service_class|
           service_class::MESSAGE == message
         end
