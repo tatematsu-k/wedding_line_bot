@@ -17,6 +17,7 @@ class Line::PushMessage::GroomChildService
   LEFT_MENU_HEIGHT = 320
   RIGHT_MENU_WIDTH = FULL_WIDTH - LEFT_MENU_WIDTH
   RIGHT_MENU_HEIGHT = (LEFT_MENU_HEIGHT * 2 / 5).to_i
+
   private
     def message
       {

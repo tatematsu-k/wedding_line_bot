@@ -3,9 +3,9 @@
 module Line
   class EventHandleService::MessageService::TextMessageService::GroomChildNewsReceiveService
     attr_reader :event, :line_user
-    TOP_MENU_MESSAGE="幸樹誕生！"
-    LEFT_MENU_MESSAGES=["20年続いた合気道", "卒業旅行は鳥取島根！なぜ？"]
-    RIGHT_MENU_MESSAGES=["苦いお薬はいや！", "インターナショナルな入園試験！？", "国語が苦手な原因は？", "水泳部部長就任秘話", "得意で大学受験"]
+    TOP_MENU_MESSAGE = "幸樹誕生！"
+    LEFT_MENU_MESSAGES = ["20年続いた合気道", "卒業旅行は鳥取島根！なぜ？"]
+    RIGHT_MENU_MESSAGES = ["苦いお薬はいや！", "インターナショナルな入園試験！？", "国語が苦手な原因は？", "水泳部部長就任秘話", "得意で大学受験"]
 
     def initialize(event:, line_user:)
       @event = event

@@ -3,9 +3,9 @@
 module Line
   class EventHandleService::MessageService::TextMessageService::BrideChildNewsReceiveService
     attr_reader :event, :line_user
-    TOP_MENU_MESSAGE="梓誕生！"
-    LEFT_MENU_MESSAGES=["髪の毛生えるかなぁ", "最新の写真ポーズとは"]
-    RIGHT_MENU_MESSAGES=["酒持ってこぉい", "一升餅ダンス？", "寒中水泳", "カップヌードル", "ごきげんよう"]
+    TOP_MENU_MESSAGE = "梓誕生！"
+    LEFT_MENU_MESSAGES = ["髪の毛生えるかなぁ", "最新の写真ポーズとは"]
+    RIGHT_MENU_MESSAGES = ["酒持ってこぉい", "一升餅ダンス？", "寒中水泳", "カップヌードル", "ごきげんよう"]
 
     def initialize(event:, line_user:)
       @event = event
