@@ -14,6 +14,10 @@ module Line
         CheckUserNameService.new(event:, line_user:).call
       elsif service_class = find_target_service_class(received_message)
         service_class.new(event:, line_user:).call
+      elsif EventHandleService::MessageService::TextMessageService::GroomChildNewsReceiveService.check?(received_message)
+        EventHandleService::MessageService::TextMessageService::GroomChildNewsReceiveService.new(event:, line_user:).call
+      elsif EventHandleService::MessageService::TextMessageService::BrideChildNewsReceiveService.check?(received_message)
+        EventHandleService::MessageService::TextMessageService::BrideChildNewsReceiveService.new(event:, line_user:).call
       else
         # 未対応のものは一旦受け取った文言を返す
         message = { type: "text", text: received_message }
