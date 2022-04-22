@@ -9,6 +9,9 @@ class LineClient
     Rails.logger.info("call `#{m}` with #{kw}")
     line_bot_client.public_send(m, *arg, **kw, &block).tap do |res|
       Rails.logger.info(res)
+      if res.is_a? Net::HTTPResponse
+        Rails.logger.info(res.body)
+      end
     end
   end
 
