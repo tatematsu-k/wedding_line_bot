@@ -10,6 +10,7 @@ module Line
     end
 
     def call
+      Rails.logger.info("call PostbackService: #{service}")
       service.call
     end
 
@@ -19,7 +20,7 @@ module Line
       end
 
       def service_class
-        self.class.const_get("#{data[:service].camelize}Service")
+        @service_class ||= self.class.const_get("#{data[:service].camelize}Service")
       end
 
       def data
