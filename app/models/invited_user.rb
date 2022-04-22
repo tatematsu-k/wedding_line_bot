@@ -17,4 +17,5 @@
 #
 class InvitedUser < ApplicationRecord
   has_one :user_activation, dependent: :destroy
+  delegate :line_user, to: :user_activation, allow_nil: true
 end
