@@ -16,15 +16,13 @@ module Line
     end
 
     def call
-      if line_user.question_status_wait_answer2?
-        case cmd
-        when CMD_ABOUT_CHILD
-          Line::PushMessage::GroomChildService.new(event:, line_user:).call
-        when CMD_ABOUT_JOB
-          Line::PushMessage::GroomJobService.new(event:, line_user:).call
-        when CMD_ABOUT_HOBBY
-          Line::PushMessage::GroomHobbyService.new(event:, line_user:).call
-        end
+      case cmd
+      when CMD_ABOUT_CHILD
+        Line::PushMessage::GroomChildService.new(event:, line_user:).call
+      when CMD_ABOUT_JOB
+        Line::PushMessage::GroomJobService.new(event:, line_user:).call
+      when CMD_ABOUT_HOBBY
+        Line::PushMessage::GroomHobbyService.new(event:, line_user:).call
       end
     end
   end
