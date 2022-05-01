@@ -6,7 +6,7 @@ class LineClient
   end
 
   def method_missing(m, *arg, **kw, &block)
-    Rails.logger.info("call `#{m}` with #{kw}")
+    Rails.logger.info("call `#{m}` with #{arg} #{kw}")
     line_bot_client.public_send(m, *arg, **kw, &block).tap do |res|
       Rails.logger.info(res)
       if res.is_a? Net::HTTPResponse
