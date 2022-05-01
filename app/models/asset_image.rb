@@ -26,6 +26,10 @@ class AssetImage < ApplicationRecord
   BRIDE_CHILD_NEWS_NOODLE_KEY = "bride_child_noodle_key"
   GROOM_CHILD_NEWS_RANGER_KEY = "groom_child_ranger_key"
   GROOM_CHILD_NEWS_AIKIDO_KEY = "groom_child_aikido_key"
+  GROOM_HOBBY1_KEY = "groom_hoby1"
+  GROOM_HOBBY2_KEY = "groom_hoby2"
+  BRIDE_HOBBY1_KEY = "bride_hoby1"
+  BRIDE_HOBBY2_KEY = "bride_hoby2"
 
   def self.seat_list_image
     @@seat_list_image ||= AssetImage.find_by!(key: SEAT_IMAGE_KEY)
@@ -85,5 +89,21 @@ class AssetImage < ApplicationRecord
 
   def self.groom_child_news_aikido_image
     @@groom_child_news_aikido_image ||= AssetImage.find_by!(key: GROOM_CHILD_NEWS_AIKIDO_KEY)
+  end
+
+  def self.groom_hobby1_image
+    @@groom_hobby1_image ||= AssetImage.find_by!(key: GROOM_HOBBY1_KEY)
+  end
+
+  def self.groom_hobby2_image
+    @@groom_hobby2_image ||= AssetImage.find_by!(key: GROOM_HOBBY2_KEY)
+  end
+
+  def self.bride_hobby1_image
+    @@bride_hobby1_image ||= AssetImage.find_by!(key: BRIDE_HOBBY1_KEY)
+  end
+
+  def self.bride_hobby2_image
+    @@bride_hobby2_image ||= AssetImage.find_by!(key: BRIDE_HOBBY2_KEY)
   end
 end
