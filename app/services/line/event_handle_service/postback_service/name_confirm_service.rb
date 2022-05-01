@@ -18,7 +18,7 @@ module Line
     def call
       case cmd
       when CMD_YES
-        line_user.create_user_activation!(invited_user:)
+        line_user.activate!(invited_user:)
 
         PushMessage::ApproveUserNameConfirmationService.new(event:, line_user:, invited_user:).call
       when CMD_NO
