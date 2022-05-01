@@ -17,7 +17,7 @@ class Line::PushMessage::ReplySimpleImagesMessageService
     def message_obj
       {
         type: "flex",
-        altText: "画像です。スマートフォンで確認してください。",
+        altText: "画像が届きました",
         contents: {
           type: "carousel",
           contents:
