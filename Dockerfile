@@ -6,6 +6,7 @@ RUN apt-get update -qq \
                             git \
                             build-essential \
                             default-libmysqlclient-dev \
+                            imagemagick \
                             shared-mime-info && \
     gem install bundler -v '2.3.7'
 
