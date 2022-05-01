@@ -17,27 +17,25 @@ class Line::PushMessage::ReplySimpleImagesMessageService
     def message_obj
       {
         type: "flex",
-        altText: "画像です。スマートフォンで確認してください。",
+        altText: "画像が届きました",
         contents: {
           type: "carousel",
           contents:
             asset_images.map do |image|
+              mini_magick_image = MiniMagick::Image.open(image.url)
+
               {
                 type: "bubble",
-                body: {
-                  type: "box",
-                  layout: "vertical",
-                  contents: [
-                    {
-                      type: "image",
-                      url: image.url,
-                      size: "full",
-                      action: {
-                        type: "uri",
-                        uri: image.url,
-                      }
-                    }
-                  ]
+                hero: {
+                  type: "image",
+                  url: image.url,
+                  size: "full",
+                  aspectRatio: "#{mini_magick_image[:width]}:#{mini_magick_image[:height]}",
+                  aspectMode: "cover",
+                  action: {
+                    type: "uri",
+                    uri: image.url,
+                  }
                 }
               }
             end
