@@ -65,3 +65,4 @@ res = line_client.create_rich_menu(
 parsed_res = JSON.parse(res.body)
 line_client.create_rich_menu_image(parsed_res["richMenuId"], URI.open(AssetImage.rich_menu_image.url))
 LineRichMenu.create!(rich_menu_id: parsed_res["richMenuId"])
+LineUser.joins(:user_activation).each(&:attach_latest_line_rich_menu)

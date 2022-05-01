@@ -38,8 +38,6 @@ class LineUser < ApplicationRecord
     end
   end
 
-  private
-
   def attach_latest_line_rich_menu!
     line_rich_menu = LineRichMenu.last
     # cf: https://developers.line.biz/ja/docs/messaging-api/using-rich-menus/#when-setting-change-takes-effect
