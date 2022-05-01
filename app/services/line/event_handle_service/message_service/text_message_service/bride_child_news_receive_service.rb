@@ -32,12 +32,15 @@ module Line
         MESSAGE
         Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
       when LEFT_MENU_MESSAGES[1]
+        asset_image = AssetImage.bride_child_news_trend_photo_pose_image
         message = <<~MESSAGE.chomp
-        カメラを向けられると毎回このポーズ！
+        カメラを向けられるといつもこのポーズでした！
         どうやらピースが上手にできなかったみたいです🤣
-        人差し指が若干曲がっているのがポイントです！
+        親指と人差し指でのピース！人差し指が若干曲がっているのがポイントです😉
+        これからはこれが新しいトレンドのポーズになるかも？
+        みんなも是非このポーズで写真撮ってみてね！
         MESSAGE
-        Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
+        Line::PushMessage::ReplySimpleTextWithImageMessageService.new(event:, line_user:, message:, asset_image:, alt_text: event.message["text"]).call
       when RIGHT_MENU_MESSAGES[0]
         message = <<~MESSAGE.chomp
         祖母の家が造り酒屋なので小さい時からお酒に囲まれてました
