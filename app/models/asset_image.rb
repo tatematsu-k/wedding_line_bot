@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 class AssetImage < ApplicationRecord
+  RICH_MENU_KEY = "rich_menu"
   SEAT_IMAGE_KEY = "seat_image"
   MENU_KEY = "menu"
   MENU_JR_KEY = "menu_jr"
@@ -33,6 +34,10 @@ class AssetImage < ApplicationRecord
   GROOM_HOBBY2_KEY = "groom_hoby2"
   BRIDE_HOBBY1_KEY = "bride_hoby1"
   BRIDE_HOBBY2_KEY = "bride_hoby2"
+
+  def self.rich_menu_image
+    @@rich_menu_image ||= AssetImage.find_by!(key: RICH_MENU_KEY)
+  end
 
   def self.seat_list_image
     @@seat_list_image ||= AssetImage.find_by!(key: SEAT_IMAGE_KEY)
