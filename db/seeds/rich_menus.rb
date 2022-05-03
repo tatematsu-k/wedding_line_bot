@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 width = 2500
 height = 843
 side_menu_width = 600
