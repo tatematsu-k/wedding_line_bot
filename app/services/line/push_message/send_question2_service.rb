@@ -53,6 +53,8 @@ class Line::PushMessage::SendQuestion2Service
           ヒント！
           この LINE の中に答えがあるかも！
           メニューから新郎新婦についていろいろ見てみよう
+
+          最近の前撮りの写真でも撮影の合間に自撮りで撮ったようですよ
         MESSAGE
       }
     end
