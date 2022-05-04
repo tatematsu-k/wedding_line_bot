@@ -16,10 +16,9 @@ module Line
     def call
       case cmd
       when CMD_RESEND
-        case line_user.question_status
-        when "wait_question1"
+        if line_user.question_status_wait_answer1?
           PushMessage::SendQuestion1Service.new(event:, line_user:).call
-        when "wait_question2"
+        elsif line_user.question_status_wait_answer2?
           PushMessage::SendQuestion2Service.new(event:, line_user:, resend: true).call
         end
       end
