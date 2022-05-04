@@ -26,11 +26,12 @@ module Line
         MESSAGE
         Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
       when LEFT_MENU_MESSAGES[0]
+        asset_image = AssetImage.bride_child_news_hair_image
         message = <<~MESSAGE.chomp
           髪の毛の生えるのが周りの子よりも遅かったようで心配されていたそうです
           その後無事に生えました！のんびり待つのがいいみたいですね笑
         MESSAGE
-        Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
+        Line::PushMessage::ReplySimpleTextWithImageMessageService.new(event:, line_user:, message:, asset_image:, alt_text: event.message["text"]).call
       when LEFT_MENU_MESSAGES[1]
         asset_image = AssetImage.bride_child_news_trend_photo_pose_image
         message = <<~MESSAGE.chomp

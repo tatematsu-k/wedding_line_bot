@@ -25,6 +25,7 @@ class AssetImage < ApplicationRecord
   BRIDE_CHILD_NEWS_MOCHI_KEY = "bride_child_mochi_key"
   BRIDE_CHILD_NEWS_ALCHOL_KEY = "bride_child_alchol_key"
   BRIDE_CHILD_NEWS_NOODLE_KEY = "bride_child_noodle_key"
+  BRIDE_CHILD_NEWS_HAIR_KEY = "bride_child_hair_key"
   BRIDE_CHILD_NEWS_TREND_PHOTO_POSE_KEY = "bride_child_trend_photo_pose_key"
   GROOM_CHILD_NEWS_RANGER_KEY = "groom_child_ranger_key"
   GROOM_CHILD_NEWS_AIKIDO_KEY = "groom_child_aikido_key"
@@ -89,6 +90,10 @@ class AssetImage < ApplicationRecord
 
   def self.bride_child_news_noodle_image
     @@bride_child_news_noodle_image ||= AssetImage.find_by!(key: BRIDE_CHILD_NEWS_NOODLE_KEY)
+  end
+
+  def self.bride_child_news_hair_image
+    @@bride_child_news_hair_image ||= AssetImage.find_by!(key: BRIDE_CHILD_NEWS_HAIR_KEY)
   end
 
   def self.bride_child_news_trend_photo_pose_image
