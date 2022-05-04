@@ -36,50 +36,13 @@ class Line::PushMessage::SendQuestion2Service
 
     def question_message
       {
-        type: "template",
-        altText: "2つ目の謎",
-        template: {
-          type: "buttons",
-          thumbnailImageUrl: AssetImage.second_question_image.url,
-          imageAspectRatio: "square",
-          imageSize: "contain",
-          title: "2つ目の謎",
-          text: "新郎新婦がよく飲んでいるものは？",
-          actions: [
-            {
-              type: "postback",
-              label: "緑茶",
-              data: URI.encode_www_form(
-                service: Line::EventHandleService::PostbackService::AnswerQuestion2Service::SERVICE_NAME,
-                cmd: Line::EventHandleService::PostbackService::AnswerQuestion2Service::CMD_GREEN_TEA,
-              ),
-            },
-            {
-              type: "postback",
-              label: "紅茶",
-              data: URI.encode_www_form(
-                service: Line::EventHandleService::PostbackService::AnswerQuestion2Service::SERVICE_NAME,
-                cmd: Line::EventHandleService::PostbackService::AnswerQuestion2Service::CMD_TEA,
-              ),
-            },
-            {
-              type: "postback",
-              label: "コーヒー",
-              data: URI.encode_www_form(
-                service: Line::EventHandleService::PostbackService::AnswerQuestion2Service::SERVICE_NAME,
-                cmd: Line::EventHandleService::PostbackService::AnswerQuestion2Service::CMD_COFFEE,
-              ),
-            },
-            {
-              type: "postback",
-              label: "ワイン",
-              data: URI.encode_www_form(
-                service: Line::EventHandleService::PostbackService::AnswerQuestion2Service::SERVICE_NAME,
-                cmd: Line::EventHandleService::PostbackService::AnswerQuestion2Service::CMD_WINE,
-              ),
-            },
-          ]
-        }
+        type: :text,
+        text: <<~TEXT.chomp
+          第二問！
+
+          最近流行？のポーズで写真を撮って新郎新婦宛に送ってください！
+          送ってくれた方には式が終わった後に新郎新婦からささやかな贈り物があるかも！？
+        TEXT
       }
     end
 
@@ -88,7 +51,8 @@ class Line::PushMessage::SendQuestion2Service
         type: "text",
         text: <<~MESSAGE.chomp
           ヒント！
-          LINE のメニューから新郎新婦についてみてみよう！
+          この LINE の中に答えがあるかも！
+          メニューから新郎新婦についていろいろ見てみよう
         MESSAGE
       }
     end
