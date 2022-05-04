@@ -19,6 +19,8 @@ module Line
         case line_user.question_status
         when "wait_question1"
           PushMessage::SendQuestion1Service.new(event:, line_user:).call
+        when "wait_question2"
+          PushMessage::SendQuestion2Service.new(event:, line_user:, resend: true).call
         end
       end
     end
