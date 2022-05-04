@@ -29,7 +29,7 @@ class Line::PushMessage::RequestIntroductionService
             column(
               asset_image: AssetImage.bride1_image,
               name: "五反田梓",
-              message: "今日一日楽しんで行ってくれたら嬉しいです",
+              message: "今日一日楽しんでいってくれたら嬉しいです",
               is_broom: false,
             )
           ],

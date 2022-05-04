@@ -43,10 +43,10 @@ class Line::PushMessage::ConfirmStartQuestionService
     end
 
     def text
-      <<~MESSAGE
+      <<~MESSAGE.chomp
         披露宴までの間の時間つぶしとして少しだけ謎解きを用意しました。
         新郎新婦について知るきっかけになるのでぜひ参加してください！
-        選択式で時間制限もないのでお気軽にご参加ください笑
+        時間制限もないのでお気軽にご参加ください
       MESSAGE
     end
 
