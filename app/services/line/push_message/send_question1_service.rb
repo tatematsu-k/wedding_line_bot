@@ -67,7 +67,7 @@ class Line::PushMessage::SendQuestion1Service
         type: "text",
         text: <<~MESSAGE.chomp
           ヒント！
-          大きな木の下に新婚旅行の写真が飾ってあるよ
+          9つの写真のフレームに新婚旅行の写真が飾ってあるよ
         MESSAGE
       }
     end
