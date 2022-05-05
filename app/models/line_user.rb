@@ -32,22 +32,6 @@ class LineUser < ApplicationRecord
   }, _default: "not_started", _prefix: true
 
   def activate!(invited_user:)
-    transaction do
-      create_user_activation!(invited_user:)
-      attach_latest_line_rich_menu!
-    end
-  end
-
-  def attach_latest_line_rich_menu!
-    line_rich_menu = LineRichMenu.last
-    # cf: https://developers.line.biz/ja/docs/messaging-api/using-rich-menus/#when-setting-change-takes-effect
-    # 即時反映にするために一回unlinkしてからlinkし直す
-    line_client.unlink_user_rich_menu(line_uid)
-    line_client.link_user_rich_menu(line_uid, line_rich_menu.rich_menu_id)
-    line_rich_menu_attach.present? ? line_rich_menu_attach.update!(line_rich_menu:) : create_line_rich_menu_attach!(line_rich_menu:)
-  end
-
-  def line_client
-    @line_client ||= LineClient.build
+    create_user_activation!(invited_user:)
   end
 end

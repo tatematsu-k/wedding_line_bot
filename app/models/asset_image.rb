@@ -12,6 +12,7 @@
 #
 class AssetImage < ApplicationRecord
   RICH_MENU_KEY = "rich_menu"
+  MENU_INTRO_KEY = "menu_intro"
   SEAT_IMAGE_KEY = "seat_image"
   MENU_KEY = "menu"
   MENU_JR_KEY = "menu_jr"
@@ -38,6 +39,10 @@ class AssetImage < ApplicationRecord
 
   def self.rich_menu_image
     @@rich_menu_image ||= AssetImage.find_by!(key: RICH_MENU_KEY)
+  end
+
+  def self.menu_intro_image
+    @@menu_intro_image ||= AssetImage.find_by!(key: MENU_INTRO_KEY)
   end
 
   def self.seat_list_image

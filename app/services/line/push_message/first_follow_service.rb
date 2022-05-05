@@ -11,7 +11,7 @@ class Line::PushMessage::FirstFollowService
   def call
     line_client.reply_message(event["replyToken"], first_text_message)
     sleep(3)
-    line_client.push_message(line_user.line_uid, second_message)
+    line_client.push_message(line_user.line_uid, [second_message, third_message])
   end
 
   private
@@ -43,7 +43,17 @@ class Line::PushMessage::FirstFollowService
         例:
         立松幸樹
         五反田梓
+
+        メニュー左下のアイコンから入力モードの切り替えができます
         MESSAGE
+      }
+    end
+
+    def third_message
+      {
+        type: "image",
+        originalContentUrl: AssetImage.menu_intro_image.url,
+        previewImageUrl: AssetImage.menu_intro_image.url
       }
     end
 
