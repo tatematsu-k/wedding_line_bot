@@ -19,9 +19,8 @@ module Line
       elsif EventHandleService::MessageService::TextMessageService::BrideChildNewsReceiveService.check?(received_message)
         EventHandleService::MessageService::TextMessageService::BrideChildNewsReceiveService.new(event:, line_user:).call
       else
-        # 未対応のものは一旦受け取った文言を返す
-        message = { type: "text", text: received_message }
-        client.reply_message(event["replyToken"], message)
+        message = "すみません💦メッセージがうまく読み取れませんでした😥"
+        Line::PushMessage::ReplySimpleTextMessageService.new(event:, line_user:, message:).call
       end
     end
 
